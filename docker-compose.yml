@@ -10,7 +10,7 @@ services:
       - .env-db
 
   nextcloud-app:
-    image: nextcloud:14-fpm-alpine
+    image: nextcloud:16-fpm-alpine
     ports:
       - 8080:80
     links:
