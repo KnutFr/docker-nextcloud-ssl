@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  nextcloud-db:
+    image: postgres:11-alpine
+    restart: always
+    volumes:
+      - /home/run/srv/nextcloud/pg:/var/lib/postgresql/data
+    env_file:
+      - .env-db
+
+  nextcloud-app:
+    image: nextcloud:14-fpm-alpine
+    ports:
+      - 8080:80
+    links:
+      - db
+    volumes:
+      - /home/run/srv/nextcloud/app:/var/www/html
+    env_file:
+      - .env-app
+    restart: always
+
+networks:
+  default:
+    external:
+      name: knutech_main
