@@ -14,7 +14,7 @@ services:
     image: nextcloud:16-fpm-alpine
     container_name: nextcloud-app
     ports:
-      - 8080:80
+      - 80:80
     links:
       - db
     volumes:
