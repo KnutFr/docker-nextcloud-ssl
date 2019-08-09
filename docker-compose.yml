@@ -1,16 +1,18 @@
 version: '3'
 
 services:
-  nextcloud-db:
+  db:
     image: postgres:11-alpine
+    container_name: nextcloud-db
     restart: always
     volumes:
       - /home/run/srv/nextcloud/pg:/var/lib/postgresql/data
     env_file:
       - .env-db
 
-  nextcloud-app:
+  app:
     image: nextcloud:16-fpm-alpine
+    container_name: nextcloud-app
     ports:
       - 8080:80
     links:
